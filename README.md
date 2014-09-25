@@ -3,7 +3,7 @@ Micro Systems
 
 This is a project for Internal Systems Engineers. It intends to capture your programming and system design skills.
 
-There are 2 micro systems you will need to implement.
+There are 2 micro services you will need to implement.
 
 
 ### 1. Geocoding
@@ -18,6 +18,9 @@ There are 2 micro systems you will need to implement.
 
 
 ### 2. Profile matching/converting
+
+One typical problem of designing systems is matching and converting data and formats. 
+
 
 ```json
 {
