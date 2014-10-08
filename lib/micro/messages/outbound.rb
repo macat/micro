@@ -10,17 +10,8 @@ module Micro
         @page = inbound_message.page 
         @ip = inbound_message.ip
         @time = inbound_message.time
-        @lat = default_attributes.merge(geocoder_data).fetch('latitude')
-        @long = default_attributes.merge(geocoder_data).fetch('longitude')
-      end
-
-      private 
-
-      def default_attributes
-        { 
-          "latitude" =>  0, 
-          "longitude"=>  0
-        }
+        @lat = geocoder_data.lat
+        @long = geocoder_data.long
       end
     end
   end
