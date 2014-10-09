@@ -6,7 +6,7 @@ module Micro
     EXPIRATION_TIME = 86400
 
     def call(message)
-      key_name = "msg-#{message.ip}"
+      key_name = "msg-#{message.ip}-#{Time.now}"
       redis.set(key_name, message.to_json)
       redis.expire(key_name, EXPIRATION_TIME)
     end
