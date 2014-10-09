@@ -9,11 +9,27 @@ module Micro
     def call(msg)
       inbound_message = Messages::Inbound.for(msg)
       if inbound_message.valid?
-        geocoder_data = GeocoderData.for(Geocoder.search(inbound_message.ip).first.data)
-        outbound_message = Messages::Outbound.for(inbound_message, geocoder_data)
+        Messages::Outbound.for(inbound_message, 
+                               build_geocoder_data(inbound_message))
       else
         raise InvalidInboundMessage.new("The inbound message is invalid")
       end
+    end
+
+    private 
+
+    def build_geocoder_data(inbound_message)
+      lat_long = GeolocatedIpCache.retrieve_latitude_longitude(inbound_message.ip)
+      geocoder_data = GeocoderData.for(lat_long)
+    rescue GeolocatedIpCache::NoCachedIp
+      LogReporter.logger.info "Retrieving geo location data for #{inbound_message.ip}"
+      geocoder_data = GeocoderData.for(
+        Geocoder.search(inbound_message.ip).first.data
+      )
+      GeolocatedIpCache.save_latitude_longitude(inbound_message.ip, 
+                                                geocoder_data.lat, 
+                                                geocoder_data.long)
+      geocoder_data
     end
 
     class GeocoderData 

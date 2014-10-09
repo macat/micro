@@ -10,6 +10,7 @@ GEM
       timers (~> 4.0.0)
     coderay (1.1.0)
     diff-lcs (1.2.5)
+    dotenv (1.0.1)
     geocoder (1.2.5)
     hitimes (1.2.2)
     json (1.8.1)
@@ -50,6 +51,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  dotenv
   geocoder
   pry
   pry-nav

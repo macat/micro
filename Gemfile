@@ -4,6 +4,7 @@ source "https://rubygems.org"
 gem 'shoryuken'
 gem 'geocoder'
 gem 'redis'
+gem 'dotenv'
 
 group :development, :test do
   gem 'rspec'
