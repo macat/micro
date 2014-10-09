@@ -1,0 +1,14 @@
+aws:
+  access_key_id: 
+  secret_access_key: 
+  region: us-east-1
+  receive_message:
+    attributes:
+      - path
+      - time
+      - ip
+concurrency: 25,
+delay: 25,
+timeout: 8
+queues:
+  - [default, 6]
